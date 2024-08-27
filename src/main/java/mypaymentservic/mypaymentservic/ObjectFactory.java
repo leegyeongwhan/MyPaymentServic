@@ -10,18 +10,22 @@ public class ObjectFactory {
 
     @Bean
     public PaymentService paymentService() {
-        return new PaymentService(exRateProvider());
+        return new PaymentService(cashedProvider());
+    }
+
+    @Bean
+    public ExRateProvider cashedProvider() {
+        return new CashedExRateProvider(exRateProvider());
+    }
+
+    @Bean
+    public ExRateProvider exRateProvider() {
+        return new WebApiExRateProvider();
     }
 
     @Bean
     public OrderService orderService() {
         return new OrderService(exRateProvider());
-    }
-
-
-    @Bean
-    public ExRateProvider exRateProvider() {
-        return new SimpleExRateProvider();
     }
 }
 
