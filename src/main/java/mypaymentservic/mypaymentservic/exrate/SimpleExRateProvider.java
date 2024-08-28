@@ -1,5 +1,6 @@
-package mypaymentservic.mypaymentservic;
+package mypaymentservic.mypaymentservic.exrate;
 
+import mypaymentservic.mypaymentservic.paymentservice.ExRateProvider;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;

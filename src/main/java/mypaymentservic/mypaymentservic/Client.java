@@ -1,5 +1,7 @@
 package mypaymentservic.mypaymentservic;
 
+import mypaymentservic.mypaymentservic.paymentservice.Payment;
+import mypaymentservic.mypaymentservic.paymentservice.PaymentService;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -15,7 +17,8 @@ public class Client {
         OrderService orderService = beanFactory.getBean(OrderService.class);
 
         //둘이 같음 - true > spring 싱글 레지스터리 역할을 하고있따.
-        System.out.println(paymentService.getProvider() == orderService.exRateProvider);
+//        System.out.println(paymentService.getProvider() == orderService.exRateProvider);
+        System.out.println(orderService.exRateProvider.getClass());
 
         Payment payment1 = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
         System.out.println(payment1);

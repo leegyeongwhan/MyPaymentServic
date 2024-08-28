@@ -1,4 +1,4 @@
-package mypaymentservic.mypaymentservic;
+package mypaymentservic.mypaymentservic.paymentservice;
 
 import lombok.Getter;
 import lombok.ToString;

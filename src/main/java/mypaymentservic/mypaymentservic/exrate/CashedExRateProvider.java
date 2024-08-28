@@ -1,4 +1,6 @@
-package mypaymentservic.mypaymentservic;
+package mypaymentservic.mypaymentservic.exrate;
+
+import mypaymentservic.mypaymentservic.paymentservice.ExRateProvider;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -13,6 +15,7 @@ public class CashedExRateProvider implements ExRateProvider {
         this.target = target;
     }
 
+    //WebExRate를 넣어둔다 데코레이터 패턴
     @Override
     public BigDecimal getExRate(String currency) throws IOException {
         if (cashedExRate == null || cacheExpiryTime.isBefore(LocalDateTime.now())) {

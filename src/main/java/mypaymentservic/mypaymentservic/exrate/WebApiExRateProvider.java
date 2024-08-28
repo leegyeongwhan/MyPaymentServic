@@ -1,7 +1,7 @@
-package mypaymentservic.mypaymentservic;
+package mypaymentservic.mypaymentservic.exrate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.stereotype.Component;
+import mypaymentservic.mypaymentservic.paymentservice.ExRateProvider;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,5 +1,9 @@
 package mypaymentservic.mypaymentservic;
 
+import mypaymentservic.mypaymentservic.exrate.CashedExRateProvider;
+import mypaymentservic.mypaymentservic.paymentservice.ExRateProvider;
+import mypaymentservic.mypaymentservic.exrate.WebApiExRateProvider;
+import mypaymentservic.mypaymentservic.paymentservice.PaymentService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

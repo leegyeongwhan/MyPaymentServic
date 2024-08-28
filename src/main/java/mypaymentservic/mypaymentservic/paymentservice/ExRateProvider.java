@@ -1,4 +1,4 @@
-package mypaymentservic.mypaymentservic;
+package mypaymentservic.mypaymentservic.paymentservice;
 
 import java.io.IOException;
 import java.math.BigDecimal;

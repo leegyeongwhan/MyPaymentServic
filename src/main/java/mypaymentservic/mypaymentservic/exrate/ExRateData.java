@@ -1,4 +1,4 @@
-package mypaymentservic.mypaymentservic;
+package mypaymentservic.mypaymentservic.exrate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

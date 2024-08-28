@@ -1,12 +1,10 @@
-package mypaymentservic.mypaymentservic;
-
-import org.springframework.stereotype.Component;
+package mypaymentservic.mypaymentservic.paymentservice;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-class PaymentService {
+public class PaymentService {
 
     private final ExRateProvider provider;
 
@@ -15,6 +13,7 @@ class PaymentService {
     }
 
     public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount) throws IOException {
+        //여기서 오는 Provider 는 object factory에서 결정
         BigDecimal exRate = provider.getExRate(currency);
         BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);
         LocalDateTime validUntil = LocalDateTime.now().plusMinutes(30);
