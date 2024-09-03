@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = TestObjectFactory.class)
-class PaymentServiceDiTest {
+class PaymentAopServiceDiTest {
 
     @Autowired
     PaymentService paymentService;
