@@ -17,7 +17,7 @@ class PaymentTest {
     Payment payment;
 
     @BeforeEach
-    void init() throws IOException {
+    void init()  {
         clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
         exRateProvider = new WebApiExRateProvider();
         payment = Payment.createPrepare(
@@ -26,7 +26,7 @@ class PaymentTest {
     }
 
     @Test
-    void createPrepared() throws IOException {
+    void createPrepared()  {
         Assertions.assertThat(payment.getCurrency()).isEqualTo("USD");
         Assertions.assertThat(payment.getExRate()).isEqualTo(exRateProvider.getExRate("USD"));
         Assertions.assertThat(payment.getConvertedAmount()).isEqualByComparingTo(BigDecimal.TEN.multiply(payment.exRate));
@@ -34,7 +34,7 @@ class PaymentTest {
     }
 
     @Test
-    void isValid() throws IOException {
+    void isValid()  {
         Payment payment = Payment.createPrepare(
                 1L, "USD", BigDecimal.TEN, exRateProvider, clock
         );
