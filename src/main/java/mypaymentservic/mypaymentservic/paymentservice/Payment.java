@@ -3,7 +3,9 @@ package mypaymentservic.mypaymentservic.paymentservice;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.Clock;
 import java.time.LocalDateTime;
 
 @Getter
@@ -25,5 +27,14 @@ public class Payment {
         this.validUntil = validUntil;
     }
 
+    public static Payment createPrepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount, ExRateProvider provider, Clock clock) throws IOException {
+        BigDecimal exRate = provider.getExRate(currency);
+        BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);
+        LocalDateTime validUntil = LocalDateTime.now(clock).plusMinutes(30);
+        return new Payment(orderId, currency, foreignCurrencyAmount, exRate, convertedAmount, validUntil);
+    }
 
+    public boolean isValid(Clock clock) {
+        return LocalDateTime.now(clock).isBefore(this.validUntil);
+    }
 }
