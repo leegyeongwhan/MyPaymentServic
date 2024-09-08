@@ -1,8 +1,11 @@
 package mypaymentservic.mypaymentservic;
 
+import mypaymentservic.mypaymentservic.api.ApiTemplate;
+import mypaymentservic.mypaymentservic.api.ExApiExRateExtractor;
+import mypaymentservic.mypaymentservic.api.SimpleApiExecutor;
 import mypaymentservic.mypaymentservic.exrate.CashedExRateProvider;
-import mypaymentservic.mypaymentservic.paymentservice.ExRateProvider;
 import mypaymentservic.mypaymentservic.exrate.WebApiExRateProvider;
+import mypaymentservic.mypaymentservic.paymentservice.ExRateProvider;
 import mypaymentservic.mypaymentservic.paymentservice.PaymentService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +22,12 @@ public class PaymentConfig {
 
     @Bean
     public ExRateProvider exRateProvider() {
-        return new WebApiExRateProvider();
+        return new WebApiExRateProvider(apiTemplate());
+    }
+
+    @Bean
+    public ApiTemplate apiTemplate() {
+        return new ApiTemplate(new SimpleApiExecutor(), new ExApiExRateExtractor());
     }
 
     @Bean
