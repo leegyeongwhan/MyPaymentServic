@@ -1,5 +1,6 @@
 package mypaymentservice.mypaymentservice.paymentservice;
 
+import mypaymentservice.mypaymentservice.api.ApiTemplate;
 import mypaymentservice.mypaymentservice.exrate.WebApiExRateProvider;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,16 +17,16 @@ class PaymentTest {
     Payment payment;
 
     @BeforeEach
-    void init()  {
+    void init() {
         clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
-        exRateProvider = new WebApiExRateProvider();
+        exRateProvider = new WebApiExRateProvider(new ApiTemplate());
         payment = Payment.createPrepare(
                 1L, "USD", BigDecimal.TEN, exRateProvider, clock
         );
     }
 
     @Test
-    void createPrepared()  {
+    void createPrepared() {
         Assertions.assertThat(payment.getCurrency()).isEqualTo("USD");
         Assertions.assertThat(payment.getExRate()).isEqualTo(exRateProvider.getExRate("USD"));
         Assertions.assertThat(payment.getConvertedAmount()).isEqualByComparingTo(BigDecimal.TEN.multiply(payment.exRate));
@@ -33,7 +34,7 @@ class PaymentTest {
     }
 
     @Test
-    void isValid()  {
+    void isValid() {
         Payment payment = Payment.createPrepare(
                 1L, "USD", BigDecimal.TEN, exRateProvider, clock
         );
