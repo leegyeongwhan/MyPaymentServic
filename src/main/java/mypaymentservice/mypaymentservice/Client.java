@@ -19,5 +19,6 @@ public class Client {
         System.out.println("--------------------\n");
         Payment payment3 = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
         System.out.println(payment3);
+
     }
 }

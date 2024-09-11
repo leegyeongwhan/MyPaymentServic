@@ -1,7 +1,6 @@
 package mypaymentservice.mypaymentservice;
 
 import jakarta.persistence.EntityManagerFactory;
-import mypaymentservice.mypaymentservice.data.OrderRepository;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,10 +43,5 @@ public class DataConfig {
     @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
-    }
-
-    @Bean
-    public OrderRepository orderRepository() {
-        return new OrderRepository();
     }
 }

@@ -1,0 +1,29 @@
+package mypaymentservice.mypaymentservice.order;
+
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionTemplate;
+
+import java.math.BigDecimal;
+
+@Service
+public class OrderService {
+
+    private final OrderRepository orderRepository;
+    private final JpaTransactionManager jpaTransactionManager;
+
+    public OrderService(OrderRepository orderRepository, JpaTransactionManager jpaTransactionManager) {
+        this.orderRepository = orderRepository;
+        this.jpaTransactionManager = jpaTransactionManager;
+    }
+
+    public Order createOrder(String no, BigDecimal total) {
+        Order order = new Order(no, total);
+
+        return new TransactionTemplate(jpaTransactionManager).execute(status -> {
+            this.orderRepository.save(order);
+            return order;
+        });
+    }
+
+}
